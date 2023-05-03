@@ -2,11 +2,13 @@
 
 {% block content %}
 
-<h1>
-    {% for i in content %}
+
+{% for i in content %}
+<div class="note-block">
     <h2>{{ i.title }}</h2>
     <h4>{{ i.text }}</h4>
-    {% endfor %}
-</h1>
+</div>
+{% endfor %}
+
 
 {% endblock %}

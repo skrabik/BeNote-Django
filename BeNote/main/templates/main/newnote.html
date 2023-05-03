@@ -1,1 +1,11 @@
 {% extends 'main/base.html' %}
+
+
+{% block content %}
+
+<form action="{% url 'newnote' %}" method="post">
+    {{ form.as_p }}
+    <button type="submit" class="buttons">Добавить записку</button>
+</form>
+
+{% endblock %}

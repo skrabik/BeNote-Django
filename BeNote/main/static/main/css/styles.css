@@ -18,6 +18,7 @@ html, body {
     min-height: 600px;
 }
 
+
 .content {
     float: left;
     width: 80%;
@@ -31,13 +32,13 @@ html, body {
 }
 
 .footer {
-
 }
 
 .inner-footer {
     background: black;
     color: white;
     margin-top: 10px;
+
 }
 
 .clearfix:after {
@@ -54,3 +55,39 @@ html, body {
 .clearfix { display: block; }
 /* close commented backslash hack */
 
+.logo {
+	background: url('../images/logo.png') no-repeat 10px 5px;
+	width: 70px;
+	height: 60px;
+}
+
+
+.input_text {
+	border-radius: 10px;
+	cols: 60;
+	rows: 10;
+	height: 300px;
+	width: 100%;
+}
+
+.buttons {
+    border-radius: 7px;
+    background-color: Aqua;
+    border-style: none;
+    margin-top: 5px;
+}
+
+
+.named {
+    border-radius: 8px;
+    width: 100%;
+}
+
+.note-block {
+    background-color: #63DAC2;
+    height: 300px;
+    width: 300px;
+    float: left;
+    padding: 10px;
+    margin-left: 10px;
+}

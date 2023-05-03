@@ -1,0 +1,28 @@
+.main {
+    display: flex;
+    justify-content: flex-start;
+    height: 300px;
+}
+
+.reg-form {
+    background-color: green;
+    width: 40%;
+    border-radius: 20px;
+    padding: 10px;
+    padding-left: 25px;
+    font-size: 120%;
+}
+
+
+.empty-block {
+    width: 30%;
+}
+
+.up-empty-block {
+    height: 200px;
+}
+
+.buttons {
+    border-radius: 7px;
+    background-color: Aqua;
+}

@@ -4,18 +4,21 @@
     <head>
         <meta charset="UTF-8">
         <title>{{ title }}</title>
-
+    <link rel="shortcut icon" href="{% static 'main/images/logo.ico' %}" type="image/x-icon"/>
 	<link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
     </head>
 
     <body>
-
-        <div class="header">шапка</div>
+        <div class="header">
+            <img src="{% static 'main/images/logo.png' %}">
+            <a href="{% url 'login' %}"><button class="buttons">Войти</button></a>
+            <a href="{% url 'registration' %}"><button class="buttons">Зарегистрироваться</button></a>
+        </div>
         <div class="clearfix">
         <div class="notes">
             <div class="inner-notes">
             {% for p in menu %}
-                <a href="{% url p.url %}"><button><h3>{{ p.title }}</h3></button></a>
+                <li><a href="{% url p.url %}"><button class="buttons"><h3>{{ p.title }}</h3></button></a></li>
             {% endfor %}
             </div>
         </div>
