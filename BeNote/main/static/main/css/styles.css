@@ -91,3 +91,13 @@ html, body {
     padding: 10px;
     margin-left: 10px;
 }
+
+.user-block {
+    float: right;
+    margin-right: 10px;
+}
+
+.costyl {
+    height: 40px;
+}
+

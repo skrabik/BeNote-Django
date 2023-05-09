@@ -11,8 +11,14 @@
     <body>
         <div class="header">
             <img src="{% static 'main/images/logo.png' %}">
-            <a href="{% url 'login' %}"><button class="buttons">Войти</button></a>
-            <a href="{% url 'registration' %}"><button class="buttons">Зарегистрироваться</button></a>
+            {% if request.user.is_authenticated %}
+            <div>{{ user.username }} | <button class="buttons"><a href="{% url 'logout' %}">Выйти</a></button></div>
+            {% else %}
+            <div class="user-block">
+                <a href="{% url 'login' %}"><button class="buttons">Войти</button></a>
+                <a href="{% url 'registration' %}"><button class="buttons">Зарегистрироваться</button></a>
+            </div>
+            {% endif %}
         </div>
         <div class="clearfix">
         <div class="notes">

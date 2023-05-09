@@ -1,1 +1,26 @@
-{% extends 'main/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Вход</title>
+    <link rel="stylesheet" href="{% static 'main/css/form-styles.css' %}" >
+    <link rel="shortcut icon" href="{% static 'main/images/logo.ico' %}" type="image/x-icon"/>
+</head>
+
+<body>
+<div class="up-empty-block"></div>
+<div class="main">
+    <div class="empty-block"></div>
+
+    <form class="reg-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="buttons">Войти</button>
+    </form>
+
+    <div class="empty-block"></div>
+</div>
+
+</body>
+
+</html>

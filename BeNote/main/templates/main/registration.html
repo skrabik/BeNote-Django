@@ -12,7 +12,8 @@
 <div class="main">
     <div class="empty-block"></div>
 
-    <form class="reg-form" method="post" action="{% url 'main' %}">
+    <form class="reg-form" method="post">
+        {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="buttons">Регистрация</button>
     </form>

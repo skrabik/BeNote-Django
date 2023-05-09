@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
+from django.contrib.auth import logout, login
 
 menu = [{'title': 'Добавить заметку', 'url': 'newnote'},
         {'title': 'Мои заметки', 'url': 'notes'},
-        {'title': 'Задачи', 'url': 'tasks'},
-        {'title': 'Блокноты', 'url': 'notepads'},
+        #{'title': 'Задачи', 'url': 'tasks'},
+        #{'title': 'Блокноты', 'url': 'notepads'},
 ]
 
 from .models import *
@@ -23,40 +26,57 @@ class BeNoteMain(ListView):
         context['title'] = 'Добавить записку'
         return context
 
-class New_note(ListView):
-    model = Content
+class New_note(CreateView):
+    def get_user_id(self):
+        user_id = self.request.user.id
+        return user_id
+
+    form_class = Add_newnote_form
     template_name = 'main/newnote.html'
+    success_url = reverse_lazy('main')
     def  get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        form = Add_newnote_form()
         context['menu'] = menu
         context['title'] = 'Добавить записку'
-        context['form'] = form
         return context
+
 
 def notes(request):
-    content = Content.objects.all()
+    content = Content.objects.filter(user_id=request.user.id)
     return render(request, 'main/notes.html', {'menu': menu, 'title': 'Мои заметки', 'content': content})
 
-def notepads(request):
-    return render(request, 'main/notepads.html', {'menu': menu, 'title': 'Блокноты'})
+class Login_user(LoginView):
+    form_class = Login_form
+    template_name = "main/login.html"
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        context['title'] = 'Войти'
+        return context
+    def get_success_url(self):
+        return reverse_lazy('main')
 
-def tasks(request):
-    return render(request, 'main/tasks.html', {'menu': menu, 'title': 'Задачи'})
 
-
-def login(request):
-    return render(request, 'main/login.html', {'menu': menu, 'title': 'Задачи'})
-
-class UserRegister(ListView):
-    model = Content
+class UserRegister(CreateView):
+    form_class = Registration_form
     template_name = 'main/registration.html'
+    #success_url = reverse_lazy('login')
     def  get_context_data(self, *, object_list=None, **kwargs):
-        form = Registration_form()
         context = super().get_context_data(**kwargs)
         context['menu'] = menu
         context['title'] = 'Добавить записку'
-        context['form'] = form
         return context
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('main')
 
+# def tasks(request):
+#     return render(request, 'main/tacks.html', {'menu': menu, 'title': 'Мои заметки'})
+#
+# def notepads(request):
+#     return render(request, 'main/tacks.html', {'menu': menu, 'title': 'Мои заметки'})
 
+def logout_user(request):
+    logout(request)
+    return redirect('main')
