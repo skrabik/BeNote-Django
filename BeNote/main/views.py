@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
 from django.contrib.auth import logout, login
@@ -77,6 +77,11 @@ class UserRegister(CreateView):
 # def notepads(request):
 #     return render(request, 'main/tacks.html', {'menu': menu, 'title': 'Мои заметки'})
 
-def logout_user(request):
-    logout(request)
-    return redirect('main')
+# def logout_user(request):
+#     logout(request)
+#     return reverse_lazy('main')
+
+
+class Logout(LogoutView):
+    def get_success_url(self):
+        return reverse_lazy('main')
