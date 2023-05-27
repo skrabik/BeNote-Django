@@ -3,9 +3,6 @@ from .models import *
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 class Add_newnote_form(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['user_id'].empty_label = "9876"
     class Meta:
         model = Content
         fields = ['title', 'text', 'user_id']
