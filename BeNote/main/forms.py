@@ -5,12 +5,11 @@ from django.contrib.auth.models import User
 class Add_newnote_form(forms.ModelForm):
     class Meta:
         model = Content
-        fields = ['title', 'text', 'user_id']
+        fields = '__all__'
         widgets = {
             'title': forms.TextInput(attrs={'class': 'named'}),
             'text': forms.Textarea(attrs={'class': 'input_text'}),
         }
-
 
 
 

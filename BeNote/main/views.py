@@ -26,19 +26,30 @@ class BeNoteMain(ListView):
         context['title'] = 'Добавить записку'
         return context
 
-class New_note(CreateView):
-    def get_user_id(self):
-        user_id = self.request.user.id
-        return user_id
 
-    form_class = Add_newnote_form
-    template_name = 'main/newnote.html'
-    success_url = reverse_lazy('main')
-    def  get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        context['title'] = 'Добавить записку'
-        return context
+# class New_note(CreateView):
+#     # def get_user_id(self):
+#     #     user_id = self.request.user.id
+#     #     return user_id
+#
+#     form_class = Add_newnote_form
+#     template_name = 'main/newnote.html'
+#     success_url = reverse_lazy('main')
+#     def  get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['menu'] = menu
+#         context['title'] = 'Добавить записку'
+#         return context
+
+def New_note(request):
+    if request.method == 'POST':
+        form =Add_newnote_form(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('main')
+    else:
+        form = Add_newnote_form()
+    return render(request, "main/newnote.html", context={'form': form, 'menu': menu, 'title': "Добавить заметку"})
 
 
 def notes(request):
