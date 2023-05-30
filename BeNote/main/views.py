@@ -42,13 +42,14 @@ class BeNoteMain(ListView):
 #         return context
 
 def New_note(request):
+    user_id = str(request.user.id)
     if request.method == 'POST':
-        form =Add_newnote_form(request.POST, request.FILES)
+        form = Add_newnote_form(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('main')
     else:
-        form = Add_newnote_form()
+        form = Add_newnote_form(initial={'user_id': user_id})
     return render(request, "main/newnote.html", context={'form': form, 'menu': menu, 'title': "Добавить заметку"})
 
 
