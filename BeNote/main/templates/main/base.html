@@ -10,13 +10,14 @@
 
     <body>
         <div class="header">
-            <img src="{% static 'main/images/logo.png' %}">
+            <a href="{% url 'main' %}" ><img class='logo' src="{% static 'main/images/logo.png' %}"></a>
             {% if request.user.is_authenticated %}
-            <div>{{ user.username }} | <button class="buttons"><a href="{% url 'logout' %}">Выйти</a></button></div>
+            <div class="user-block">
+                <div id="user-block"><a href="{% url 'main' %}"><button class="rbutton">{{ user.username }}</button><a></a> | <a href="{% url 'logout' %}"><button class="rbutton">Выйти</button></a></div>
+            </div>
             {% else %}
             <div class="user-block">
-                <a href="{% url 'login' %}"><button class="buttons">Войти</button></a>
-                <a href="{% url 'registration' %}"><button class="buttons">Зарегистрироваться</button></a>
+                <div id="user-block"><a href="{% url 'login' %}"><button class="rbutton">Войти</button></a> | <a href="{% url 'registration' %}"><button class="rbutton">Зарегистрироваться</button></a></div>
             </div>
             {% endif %}
         </div>
@@ -24,19 +25,38 @@
         <div class="notes">
             <div class="inner-notes">
             {% for p in menu %}
-                <li><a href="{% url p.url %}"><button class="buttons"><h3>{{ p.title }}</h3></button></a></li>
+                <a href="{% url p.url %}"><button class="button"><h3>{{ p.title }}</h3></button></a>
             {% endfor %}
             </div>
         </div>
         <div class="content">
             <div class="inner-content">
                 {% block content %}
+                {% if request.user.is_authenticated %}
+                    {% if time == 'morning' %}
+                        <p>Доброе утро, {{ user.username }}!</p>
+                    {% elif time == 'day' %}
+                    <p>Добрый день, {{ user.username }}!</p>
+                    {% else %}
+                        <p>Добрый вечер, {{ user.username }}!</p>
+                    {% endif %}
+                {% else %}
+                    {% if time == 'morning' %}
+                        <p>Доброе утро!</p>
+                    {% elif time == 'day' %}
+                    <p>Добрый день!</p>
+                    {% else %}
+                        <p>Добрый вечер!</p>
+                    {% endif %}
+                {% endif %}
+
+
                 {% endblock content %}
             </div>
         </div>
         </div>
         <div class="footer">
-            <div class="inner-footer">Фуутер</div>
+            <div class="inner-footer">Почта для связи и поддержки: <a href="mailto:babenk00r@yandex.ru">babenk00r@yandex.ru</a></div>
         </div>
 
     </body>

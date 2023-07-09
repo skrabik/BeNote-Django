@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
@@ -6,12 +6,26 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
 from django.contrib.auth import logout, login
+from datetime import datetime
 
 menu = [{'title': 'Добавить заметку', 'url': 'newnote'},
         {'title': 'Мои заметки', 'url': 'notes'},
-        #{'title': 'Задачи', 'url': 'tasks'},
+        {'title': 'Корзина', 'url': 'basket'},
+        {'title': 'Задачи', 'url': 'tasks'},
         #{'title': 'Блокноты', 'url': 'notepads'},
 ]
+
+def get_time():
+    now = datetime.now().strftime("%H:%M:%S").split(':')
+    s = int(now[0]) * 60 + int(now[1])
+    if 360 < s < 720:
+        return 'morning'
+    elif 720 <= s < 1140:
+        return 'day'
+    else:
+        return 'evening'
+
+
 
 from .models import *
 
@@ -23,6 +37,7 @@ class BeNoteMain(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = menu
+        context['time'] = get_time()
         context['title'] = 'Добавить записку'
         return context
 
@@ -44,7 +59,7 @@ class BeNoteMain(ListView):
 def New_note(request):
     user_id = str(request.user.id)
     if request.method == 'POST':
-        form = Add_newnote_form(request.POST, request.FILES)
+        form = Add_newnote_form(request.POST, request.FILES, initial={'user_id': user_id})
         if form.is_valid():
             form.save()
             return redirect('main')
@@ -83,17 +98,56 @@ class UserRegister(CreateView):
         login(self.request, user)
         return redirect('main')
 
+
+def Basket(request):
+    content = Basket_model.objects.filter(user_id=request.user.id)
+    return render(request, 'main/basket.html', {'menu': menu, 'title': 'Корзина', 'content': content})
+
+
+
+def Check_note(request, post_id):
+    note = get_object_or_404(Content, id=post_id)
+    return render(request, 'main/check_note.html', {'note': note, 'menu': menu})
+
+def delete_note(request, post_id):
+    trash = Content.objects.get(id=post_id)
+    Basket_model.objects.create(title=trash.title, text=trash.text, user_id=trash.user_id, time_create=trash.time_create, last_time_update=trash.last_time_update)
+    trash.delete()
+    return redirect('main')
+
 # def tasks(request):
 #     return render(request, 'main/tacks.html', {'menu': menu, 'title': 'Мои заметки'})
 #
 # def notepads(request):
 #     return render(request, 'main/tacks.html', {'menu': menu, 'title': 'Мои заметки'})
 
-# def logout_user(request):
-#     logout(request)
-#     return reverse_lazy('main')
-
+def Check_trash_note(request, post_id):
+    note = get_object_or_404(Basket_model, id=post_id)
+    return render(request, 'main/check_trash_note.html', {'note': note, 'menu': menu})
 
 class Logout(LogoutView):
     def get_success_url(self):
         return reverse_lazy('main')
+
+def delete_trash_note(request, post_id):
+    Basket_model.objects.get(id=post_id).delete()
+    return redirect('basket')
+
+
+def clear_basket(request):
+    content = Basket_model.objects.filter(user_id=request.user.id)
+    for c in content:
+        c.delete()
+    return redirect('main')
+
+
+def tasks(request):
+    tasks = Tasks_model.objects.filter(user_id=request.user.id)
+    return render(request, 'main/tasks.html', {'menu': menu, 'tasks': tasks})
+
+def add_task(request):
+    return render(request, 'main/add_task.html', {'menu': menu})
+
+def complete_task(requests, task_id):
+    Tasks_model.objects.get(id=task_id).delete()
+    return redirect('tasks')

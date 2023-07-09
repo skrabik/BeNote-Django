@@ -1,1 +1,11 @@
 {% extends 'main/base.html' %}
+
+{% block content %}
+
+<a href="{% url 'add_task' %}"><button>Добавить задачу</button></a>
+
+{% for t in tasks %}
+    <p>{{ t.text }}</p><a href="{% url 'complete_task' t.id %}"><button>Задача выполнена</button></a>
+{% endfor %}
+
+{% endblock %}

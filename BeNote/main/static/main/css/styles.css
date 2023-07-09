@@ -1,11 +1,12 @@
 html, body {
     font-family: 'arial';
+    margin: 0px;
 }
 
 .header {
-    background: green;
+    background: #735CDD;
     height: 100px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .notes {
@@ -14,7 +15,8 @@ html, body {
 }
 
 .inner-notes {
-    background: green;
+    background: white;
+    border: 2px solid black;
     min-height: 600px;
 }
 
@@ -32,13 +34,16 @@ html, body {
 }
 
 .footer {
+    height: 32px;
+    border-top: 2px solid black;
 }
 
 .inner-footer {
-    background: black;
-    color: white;
+    background: FBFEF9;
     margin-top: 10px;
-
+    height: 32px;
+    float: right;
+    margin-right: 15px;
 }
 
 .clearfix:after {
@@ -70,13 +75,39 @@ html, body {
 	width: 100%;
 }
 
-.buttons {
-    border-radius: 7px;
-    background-color: Aqua;
+.button {
+    border-radius: 12px;
     border-style: none;
     margin-top: 5px;
+    width: 100%;
+    background-color: white;
 }
 
+.button:hover {
+      background-color:#ccc6c6;
+      transition: 0.7s;
+ }
+
+.button:active {
+    background-color: #735CDD;
+}
+
+.rbutton {
+    border-radius: 12px;
+    background-color: white;
+    border-style: none;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+.rbutton:hover {
+      background-color:#ccc6c6;
+      transition: 0.7s;
+ }
+
+.rbutton:active {
+    background-color: #735CDD;
+}
 
 .named {
     border-radius: 8px;
@@ -84,12 +115,14 @@ html, body {
 }
 
 .note-block {
-    background-color: #63DAC2;
+    background-color: white;
+    border: 3px solid black;
     height: 300px;
     width: 300px;
     float: left;
     padding: 10px;
     margin-left: 10px;
+    border-radius: 10px;
 }
 
 .user-block {
@@ -97,7 +130,25 @@ html, body {
     margin-right: 10px;
 }
 
+#user-block {
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
 .costyl {
     height: 40px;
 }
 
+.menu {
+    border: 2px solid black;
+    border-radius: 30px;
+}
+
+.logo{
+    height: 100px;
+    width: 100px;
+}
+
+#reg {
+
+}

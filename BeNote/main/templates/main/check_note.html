@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<h2>{{ note.title }}</h2>
+<h3>{{ note.text }}</h3>
+<h5>{{ note.last_time_update }}</h5>
+
+    <a href="{% url 'delete_note' note.id %}"><button type="submit" class="buttons">Удалить запись</button></a>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+{% if content %}
+
+    {% for i in content %}
+    <a href="{% url 'check_trash_note' i.pk %}"><div class="note-block">
+        <h2>{{ i.title }}</h2>
+        <h4>{{ i.text }}</h4>
+    </div></a>
+    {% endfor %}
+
+    <a href="{% url 'clear_basket' %}"><button class="buttons">Очистить корзину</button></a>
+
+{% else %}
+
+    <p>Корзина пуста!</p>
+
+{% endif %}
+
+{% endblock %}

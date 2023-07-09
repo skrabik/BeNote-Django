@@ -2,13 +2,17 @@
 
 {% block content %}
 
-
-{% for i in content %}
-<div class="note-block">
-    <h2>{{ i.title }}</h2>
-    <h4>{{ i.text }}</h4>
-</div>
-{% endfor %}
+{% if content %}
+    {% for i in content %}
+    <a href="{% url 'check_note' i.pk %}"><div class="note-block">
+        <h2>{{ i.title }}</h2>
+        <h4>{{ i.text }}</h4>
+    </div></a>
+    {% endfor %}
+{% else %}
+    <div>Упс, похоже вы пока не добавили ни одной заметки(</div>
+    <a href="{% url 'newnote' %}"><button class="buttons">Добавить заметку</button></a>
+{% endif %}
 
 
 {% endblock %}
