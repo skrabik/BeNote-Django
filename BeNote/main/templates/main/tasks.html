@@ -1,11 +1,18 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+    <div id="task-form">
+        <form action="" id="new-task-form" method="post">
+            {% csrf_token %}
 
-<a href="{% url 'add_task' %}"><button>Добавить задачу</button></a>
-
-{% for t in tasks %}
-    <p>{{ t.text }}</p><a href="{% url 'complete_task' t.id %}"><button>Задача выполнена</button></a>
-{% endfor %}
+            {{ form }}
+            <button type="submit" class="complete-task">Добавить задачу</button>
+        </form>
+    </div>
+    <div>
+        {% for t in tasks %}
+        <div class="task"><div class="text-task">{{ t.text }}</div><a href="{% url 'complete_task' t.id %}"><button class="complete-task">Задача выполнена</button></a></div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

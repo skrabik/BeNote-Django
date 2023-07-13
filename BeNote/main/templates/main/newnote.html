@@ -4,10 +4,9 @@
 {% block content %}
 
 <form action="" method="post">
-
     {% csrf_token %}
-    {{ form }}
-    <button type="submit" class="buttons">Добавить записку</button>
-</form>
 
+    {{ form }}
+    <button type="submit" class="bbutton">Добавить записку</button>
+</form>
 {% endblock %}

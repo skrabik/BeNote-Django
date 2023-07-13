@@ -14,8 +14,12 @@
 
     <form class="reg-form" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="buttons">Войти</button>
+
+        <table>
+            {{ form.as_p }}
+        </table>
+
+        <button type="submit" class="button">Войти</button>
     </form>
 
     <div class="empty-block"></div>

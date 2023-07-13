@@ -8,10 +8,10 @@ from .forms import *
 from django.contrib.auth import logout, login
 from datetime import datetime
 
-menu = [{'title': 'Добавить заметку', 'url': 'newnote'},
-        {'title': 'Мои заметки', 'url': 'notes'},
-        {'title': 'Корзина', 'url': 'basket'},
-        {'title': 'Задачи', 'url': 'tasks'},
+menu = [{'title': 'Мои заметки', 'url': 'notes', 'logo_url': 'notes.png'},
+        {'title': 'Добавить заметку', 'url': 'newnote', 'logo_url': 'penсil.png'},
+        {'title': 'Корзина', 'url': 'basket', 'logo_url': 'basket.png'},
+        {'title': 'Задачи', 'url': 'tasks', 'logo_url': 'clock.png'},
         #{'title': 'Блокноты', 'url': 'notepads'},
 ]
 
@@ -113,7 +113,7 @@ def delete_note(request, post_id):
     trash = Content.objects.get(id=post_id)
     Basket_model.objects.create(title=trash.title, text=trash.text, user_id=trash.user_id, time_create=trash.time_create, last_time_update=trash.last_time_update)
     trash.delete()
-    return redirect('main')
+    return redirect('notes')
 
 # def tasks(request):
 #     return render(request, 'main/tacks.html', {'menu': menu, 'title': 'Мои заметки'})
@@ -138,15 +138,22 @@ def clear_basket(request):
     content = Basket_model.objects.filter(user_id=request.user.id)
     for c in content:
         c.delete()
-    return redirect('main')
+    return redirect('basket')
 
 
 def tasks(request):
     tasks = Tasks_model.objects.filter(user_id=request.user.id)
-    return render(request, 'main/tasks.html', {'menu': menu, 'tasks': tasks})
+    user_id = str(request.user.id)
+    if request.method == 'POST':
+        form = Task_form(request.POST, request.FILES, initial={'user_id': user_id})
+        if form.is_valid():
+            form.save()
+            return redirect('tasks')
+    else:
+        form = Task_form(initial={'user_id': user_id})
+    return render(request, 'main/tasks.html', {'menu': menu, 'tasks': tasks, 'form': form, 'title': 'Задачи'})
 
-def add_task(request):
-    return render(request, 'main/add_task.html', {'menu': menu})
+
 
 def complete_task(requests, task_id):
     Tasks_model.objects.get(id=task_id).delete()

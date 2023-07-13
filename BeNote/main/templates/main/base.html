@@ -24,9 +24,9 @@
         <div class="clearfix">
         <div class="notes">
             <div class="inner-notes">
-            {% for p in menu %}
-                <a href="{% url p.url %}"><button class="button"><h3>{{ p.title }}</h3></button></a>
-            {% endfor %}
+                {% for p in menu %}
+                    <a href="{% url p.url %}"><button class="button"><h3><img class="Mlogo" src="{% static 'main/images/' %}{{ p.logo_url }}">    {{ p.title }}</h3></button></a>
+                {% endfor %}
             </div>
         </div>
         <div class="content">
@@ -40,6 +40,8 @@
                     {% else %}
                         <p>Добрый вечер, {{ user.username }}!</p>
                     {% endif %}
+                    <div>Последние заметки:</div>
+                    <div>Актуальные задачи</div>
                 {% else %}
                     {% if time == 'morning' %}
                         <p>Доброе утро!</p>
@@ -53,6 +55,8 @@
 
                 {% endblock content %}
             </div>
+            {% block button %}
+            {% endblock button %}
         </div>
         </div>
         <div class="footer">

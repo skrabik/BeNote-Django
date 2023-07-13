@@ -16,7 +16,6 @@ html, body {
 
 .inner-notes {
     background: white;
-    border: 2px solid black;
     min-height: 600px;
 }
 
@@ -29,7 +28,7 @@ html, body {
 .inner-content {
     background: white;
     margin-left: 10xp;
-    min-height: 600px;
+    min-height: 555px;
     margin-left: 10px;
 }
 
@@ -67,20 +66,13 @@ html, body {
 }
 
 
-.input_text {
-	border-radius: 10px;
-	cols: 60;
-	rows: 10;
-	height: 300px;
-	width: 100%;
-}
-
 .button {
     border-radius: 12px;
     border-style: none;
     margin-top: 5px;
     width: 100%;
     background-color: white;
+    text-align: left;
 }
 
 .button:hover {
@@ -110,19 +102,53 @@ html, body {
 }
 
 .named {
-    border-radius: 8px;
-    width: 100%;
+    border-radius: 10px;
+    width: 700px;
+}
+
+.input_text {
+	border-radius: 10px;
+	cols: 60;
+	rows: 10;
+	height: 300px;
+	width: 700px;
+	margin-top: 10px;
 }
 
 .note-block {
     background-color: white;
-    border: 3px solid black;
-    height: 300px;
-    width: 300px;
+    color: black;
+    border: 1px solid black;
+    height:  230px;
+    width: 325px;
     float: left;
     padding: 10px;
-    margin-left: 10px;
+    padding-left: 12px;
     border-radius: 10px;
+    margin-top: 6px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+.note-block:hover{
+  box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.note-block:link{
+  color:black;
+}
+.note-block:visited{
+  color:black;
+}
+.note-block:hover{
+  color:black;
+}
+.note-block:focus{
+  color:black;
+}
+.note-block:active{
+  color:black;
 }
 
 .user-block {
@@ -144,11 +170,92 @@ html, body {
     border-radius: 30px;
 }
 
-.logo{
+.logo {
     height: 100px;
     width: 100px;
 }
 
 #reg {
 
+}
+
+.Mlogo {
+    width: 20px;
+    height: 20px;
+}
+
+
+.bbutton {
+    border-radius: 12px;
+    border-style: none;
+    height: 45px;
+    width: 220px;
+    background-color: white;
+    text-align: left;
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 5px;
+    font-size: 1.3em;
+    text-align: center;
+    color: #735CDD;
+}
+
+.bbutton:hover {
+      background-color: #cecdfada;
+      transition: 0.7s;
+}
+
+.complete-task {
+    border-radius: 12px;
+    background-color: white;
+    border-style: none;
+    font-size: 0.9em;
+    float: right;
+    color: #735CDD;
+    height: 45px;
+}
+
+.complete-task:hover {
+      transition: 0.7s;
+      background-color: #cecdfada;
+}
+
+
+.task {
+    width: 700px;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 12px;
+    height: 45px;
+    margin-bottom: 5px;
+}
+
+.text-task {
+    width: 530px;
+    float: left;
+    padding-left: 14px;
+    padding-top: 14px;
+}
+
+.task:hover {
+    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(-1px);
+}
+
+#new-task-form {
+    height: 45px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#task-form {
+    width: 700px;
+    font-size: 1.2em;
+}
+
+#task-field {
+    border-radius: 10px;
+    height: 20px;
+    margin-top: 5px;
+    width: 450px;
 }
