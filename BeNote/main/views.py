@@ -158,3 +158,6 @@ def tasks(request):
 def complete_task(requests, task_id):
     Tasks_model.objects.get(id=task_id).delete()
     return redirect('tasks')
+
+def start_page(request):
+    return render(request, 'main/start_page.html')

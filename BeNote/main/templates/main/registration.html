@@ -3,23 +3,26 @@
 <html lang="ru">
 <head>
     <title>Регистарция</title>
-    <link rel="stylesheet" href="{% static 'main/css/form-styles.css' %}" >
+    <link rel="stylesheet" href="{% static 'main/css/start-pages-styles.css' %}" >
     <link rel="shortcut icon" href="{% static 'main/images/logo.ico' %}" type="image/x-icon"/>
 </head>
 
 <body>
-<div class="up-empty-block"></div>
-<div class="main">
-    <div class="empty-block"></div>
 
-    <form class="reg-form" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="buttons">Регистрация</button>
-    </form>
+    <div class="up-empty-block"></div>
 
-    <div class="empty-block"></div>
-</div>
+    <div class="main">
+        <div class="empty-block"></div>
+            <div class="main-block">
+            <form id="reg-form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="button">Регистрация</button>
+            </form>
+            <div>Уза зарегистрированы? - <a href="{% url 'login' %}">Войти</a></div>
+            </div>
+        <div class="empty-block"></div>
+    </div>
 
 </body>
 

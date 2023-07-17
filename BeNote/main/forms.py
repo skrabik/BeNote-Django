@@ -30,17 +30,17 @@ class Task_form(forms.ModelForm):
 
 
 class Registration_form(UserCreationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': ''}))
-    emailx = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': ''}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': ''}))
-    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class': ''}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-field'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-field'}))
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-field'}))
+    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class': 'form-field'}))
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
 
 class Login_form(AuthenticationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-field'}))
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-field'}))
 
 

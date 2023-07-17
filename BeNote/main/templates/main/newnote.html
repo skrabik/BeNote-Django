@@ -6,7 +6,8 @@
 <form action="" method="post">
     {% csrf_token %}
 
-    {{ form }}
+    <div class="new-note-form">{{ form.title }}{{ form.text }}</div>
+
     <button type="submit" class="bbutton">Добавить записку</button>
 </form>
 {% endblock %}
