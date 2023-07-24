@@ -2,21 +2,30 @@
 
 {% block content %}
 
-{% if content %}
+{% if request.user.is_authenticated %}
 
-    {% for i in content %}
-    <a href="{% url 'check_trash_note' i.pk %}"><div class="note-block">
-        <h2>{{ i.title }}</h2>
-        <h4>{{ i.text }}</h4>
-    </div></a>
-    {% endfor %}
-    {% block button %}
-    <a href="{% url 'clear_basket' %}"><button class="bbutton">Очистить корзину</button></a>
-    {% endblock button %}
+    {% if content %}
+
+        {% for i in content %}
+        <a href="{% url 'check_trash_note' i.pk %}"><div class="note-block">
+            <h2 class="head-note">{{ i.title }}</h2>
+            <h4>{{ i.text }}</h4>
+        </div></a>
+        {% endfor %}
+
+    {% else %}
+
+        <p>Корзина пуста!</p>
+    {% endif %}
+
 {% else %}
-
-    <p>Корзина пуста!</p>
-
+    <p>Пожалуйста, авторизируйтесь</p>
 {% endif %}
 
 {% endblock %}
+
+{% if request.user.is_authenticated %}
+    {% block button %}
+    <a href="{% url 'clear_basket' %}"><button class="bbutton">Очистить корзину</button></a>
+    {% endblock button %}
+{% endif %}

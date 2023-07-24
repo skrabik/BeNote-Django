@@ -10,7 +10,7 @@
 
     <body>
         <div class="header">
-            <a href="{% url 'main' %}" ><img class='logo' src="{% static 'main/images/logo.png' %}"></a>
+            <a href="{% url 'main' %}" ><img class='main-logo' src="{% static 'main/images/main-logo.png' %}"></a>
             {% if request.user.is_authenticated %}
             <div class="user-block">
                 <div id="user-block"><a href="{% url 'main' %}"><button class="rbutton">{{ user.username }}</button><a></a> | <a href="{% url 'logout' %}"><button class="rbutton">Выйти</button></a></div>
@@ -41,7 +41,7 @@
                         <p>Добрый вечер, {{ user.username }}!</p>
                     {% endif %}
                     <div>Последние заметки:</div>
-                    <div>Актуальные задачи</div>
+                    <div>Актуальные задачи:</div>
                 {% else %}
                     {% if time == 'morning' %}
                         <p>Доброе утро!</p>

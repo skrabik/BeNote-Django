@@ -12,7 +12,7 @@ class Add_newnote_form(forms.ModelForm):
         # exclude = ['user_id']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'named'}),
-            'text': forms.Textarea(attrs={'class': 'input_text'}),
+            'text': forms.Textarea(attrs={'class': 'input-text'}),
         }
 
 

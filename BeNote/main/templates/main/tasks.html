@@ -1,6 +1,8 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+
+{% if request.user.is_authenticated %}
     <div id="task-form">
         <form action="" id="new-task-form" method="post">
             {% csrf_token %}
@@ -14,5 +16,8 @@
         <div class="task"><div class="text-task">{{ t.text }}</div><a href="{% url 'complete_task' t.id %}"><button class="complete-task">Задача выполнена</button></a></div>
         {% endfor %}
     </div>
+{% else %}
+    <p>Для просмотра и добавления заметок необходимо авторизироваться</p>
+{% endif %}
 
 {% endblock %}

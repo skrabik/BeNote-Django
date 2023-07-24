@@ -101,20 +101,6 @@ html, body {
     background-color: #735CDD;
 }
 
-.named {
-    width: 700px;
-    font-size: 1.4em;
-    border-style: hidden;
-}
-
-.input_text {
-	cols: 60;
-	rows: 10;
-	height: 300px;
-	width: 700px;
-	font-size: 1.2em;
-	border-style: hidden;
-}
 
 .note-block {
     background-color: white;
@@ -129,6 +115,10 @@ html, body {
     margin-top: 6px;
     margin-left: 15px;
     margin-bottom: 10px;
+    word-wrap:break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .note-block:hover{
@@ -176,9 +166,6 @@ html, body {
     width: 100px;
 }
 
-#reg {
-
-}
 
 .Mlogo {
     width: 20px;
@@ -229,13 +216,17 @@ html, body {
     border-radius: 12px;
     height: 45px;
     margin-bottom: 5px;
+    word-wrap:break-word;
+    position: relative;
 }
 
 .text-task {
     width: 530px;
     float: left;
-    padding-left: 14px;
-    padding-top: 14px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 14px;
 }
 
 .task:hover {
@@ -259,11 +250,78 @@ html, body {
     height: 20px;
     margin-top: 5px;
     width: 450px;
+    font-size: 1.0em;
 }
 
 .new-note-form {
     border-style: solid;
-    border-width: 4px;
-    border-color: red;
-    width: 710px;
+    border-width: 2px;
+    border-color: black;
+    width: 712px;
+    border-radius: 15px;
+    margin-top: 5px;
+    height: 350px;
+}
+
+.named {
+    width: 700px;
+    font-size: 1.4em;
+    border-style: hidden;
+    margin-top: 6px;
+    margin-left: 4px;
+    border-bottom: 1px solid black;
+}
+
+.input-text {
+	cols: 60;
+	rows: 10;
+	height: 300px;
+	width: 700px;
+	font-size: 1.2em;
+	border-style: hidden;
+	margin-left: 4px;
+	resize: none;
+}
+
+.named:focus {
+    outline: none !important;
+}
+
+.input-text:focus {
+    outline: none !important;
+}
+
+.check-note {
+    border-radius: 25px;
+    border: 2px solid black;
+    height: 500px;
+    width: 800px;
+    padding-left: 15px;
+    position: relative;
+    word-wrap:break-word;
+}
+
+.main-logo {
+    object-fit: cover;
+    height: 100px;
+}
+
+.note-time {
+    position: absolute;
+    bottom: 0;
+    text-align: right;
+    width: 785px;
+    margin-right: 18px;
+}
+
+.head-note {
+    margin: 0px;
+    margin-top: 8px;
+    margin-bottom 8px;
+}
+
+.body-check-note {
+    height: 370px;
+    overflow: auto;
+    text-overflow: ellipsis;
 }
