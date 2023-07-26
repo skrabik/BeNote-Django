@@ -34,29 +34,27 @@
                 {% block content %}
                 {% if request.user.is_authenticated %}
                     {% if time == 'morning' %}
-                        <p>Доброе утро, {{ user.username }}!</p>
+                        <div class="normal-text">Доброе утро, {{ user.username }}!</div>
                     {% elif time == 'day' %}
-                    <p>Добрый день, {{ user.username }}!</p>
+                        <div class="normal-text">Добрый день, {{ user.username }}!</div>
                     {% else %}
-                        <p>Добрый вечер, {{ user.username }}!</p>
+                        <div class="normal-text">Добрый вечер, {{ user.username }}!</div>
                     {% endif %}
-                    <div>Последние заметки:</div>
-                    <div>Актуальные задачи:</div>
                 {% else %}
                     {% if time == 'morning' %}
-                        <p>Доброе утро!</p>
+                        <div class="normal-text">Доброе утро!</div>
                     {% elif time == 'day' %}
-                    <p>Добрый день!</p>
+                        <div class="normal-text">Добрый день!</div>
                     {% else %}
-                        <p>Добрый вечер!</p>
+                        <div class="normal-text">Добрый вечер!</div>
                     {% endif %}
                 {% endif %}
 
+                {% block button %}
+                {% endblock button %}
 
                 {% endblock content %}
             </div>
-            {% block button %}
-            {% endblock button %}
         </div>
         </div>
         <div class="footer">

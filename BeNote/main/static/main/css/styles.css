@@ -28,8 +28,9 @@ html, body {
 .inner-content {
     background: white;
     margin-left: 10xp;
-    min-height: 555px;
+    min-height: 600px;
     margin-left: 10px;
+    position: relative;
 }
 
 .footer {
@@ -324,4 +325,15 @@ html, body {
     height: 370px;
     overflow: auto;
     text-overflow: ellipsis;
+}
+
+
+.basket-content {
+    width: 100%;
+    min-height: 550px;
+}
+
+.normal-text {
+    font-size: 1.2em;
+    margin: 7px;
 }
